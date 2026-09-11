@@ -577,12 +577,13 @@ function drawHud() {
 
 function loop() { update(); justPressed.clear(); draw(); requestAnimationFrame(loop); }
 window.addEventListener('keydown', (event) => {
-  if ([' ', 'w', 'a', 'd', 'j', 'p', 'Enter'].includes(event.key)) event.preventDefault();
+  const key = event.key === 'Enter' ? event.key : event.key.toLowerCase();
+  if ([' ', 'w', 'a', 'd', 'j', 'p', 'Enter'].includes(key)) event.preventDefault();
   startAudio();
-  if (!event.repeat) justPressed.add(event.key);
-  keys.add(event.key);
+  if (!event.repeat) justPressed.add(key);
+  keys.add(key);
 });
-window.addEventListener('keyup', (event) => keys.delete(event.key));
+window.addEventListener('keyup', (event) => keys.delete(event.key === 'Enter' ? event.key : event.key.toLowerCase()));
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden && audio && audio.context.state === 'suspended') audio.context.resume();
 });
