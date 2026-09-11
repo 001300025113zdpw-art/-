@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap');
+
+:root {
+  color-scheme: dark;
+  --ink: #e9fbff;
+  --muted: #93b8c7;
+  --panel: #091b2a;
+  --line: #16485b;
+  --pink: #ff3cac;
+  --cyan: #00f5ff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: var(--ink);
+  background: #03070d;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+}
+
+.game-shell { width: min(100%, 1100px); }
+.topbar, .statusbar {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.topbar { border-radius: 14px 14px 0 0; border-bottom: 0; }
+.statusbar { border-radius: 0 0 14px 14px; border-top: 0; font-size: 13px; }
+.brand {
+  font: 14px 'Press Start 2P', monospace;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.brand-mark { color: var(--pink); font-size: 22px; vertical-align: -2px; text-shadow: 0 0 12px var(--pink); }
+.controls { color: var(--muted); font-size: 13px; text-align: right; }
+.controls b { color: var(--cyan); font-size: 11px; }
+#progress { color: var(--cyan); font: 11px 'Press Start 2P', monospace; white-space: nowrap; text-shadow: 0 0 8px var(--cyan); }
+.stage-wrap { position: relative; overflow: hidden; background: #071421; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+canvas { width: 100%; height: auto; display: block; image-rendering: pixelated; }
+.message {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 5px;
+  background: rgb(2 7 13 / 84%);
+  text-align: center;
+}
+.message.hidden { display: none; }
+.message p { margin: 0 0 4px; }
+#messageTitle { color: var(--pink); font: 22px 'Press Start 2P', monospace; text-shadow: 0 0 16px var(--pink); }
+#messageText { color: var(--ink); font-size: 16px; }
+button {
+  margin-top: 16px;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  color: #02151b;
+  background: var(--cyan);
+  font: 700 14px 'Zen Kaku Gothic New', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #007c91, 0 0 18px rgb(0 245 255 / 50%);
+}
+button:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+@media (max-width: 700px) {
+  body { padding: 10px; }
+  .topbar { align-items: flex-start; flex-direction: column; }
+  .controls { text-align: left; line-height: 1.7; }
+  .statusbar { font-size: 11px; }
+  #progress { font-size: 8px; }
+}
